@@ -1,0 +1,188 @@
+# =========================
+# Global / OS / IDE
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+
+# Editor temp files
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# =========================
+# Flutter / Dart / Pub
+# =========================
+# Dart/Flutter tool and build
+.dart_tool/
+.packages
+.pub/
+.pub-cache/
+.pub-preload-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+generated_plugin_registrant.*
+**/generated_plugin_registrant.*
+build/
+.flutter_build/
+flutter_*.png
+
+# Dart analysis / coverage
+coverage/
+*.lcov
+
+# Dart/Flutter artifacts
+*.dill
+*.so
+*.a
+*.o
+*.dSYM
+
+# Keep pubspec.lock out of packages that should not commit it
+!/pubspec.lock
+
+# =========================
+# Platform specific
+# =========================
+# iOS / Xcode
+ios/Pods/
+ios/Flutter/ephemeral/
+ios/.generated/
+ios/Flutter/Flutter.framework
+ios/Flutter/App.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/Flutter.podspec
+ios/Runner/GeneratedPluginRegistrant.*
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/*.moved-aside
+**/ios/**/xcuserdata
+DerivedData/
+*.xcuserstate
+*.hmap
+*.ipa
+*.app
+
+# macOS
+macos/Flutter/ephemeral/
+macos/Pods/
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+**/macos/Flutter/ephemeral/
+**/xcuserdata/
+
+# Android / Gradle
+**/android/**/gradle-wrapper.jar
+**/android/**/GeneratedPluginRegistrant.java
+**/android/**/GeneratedPluginRegistrant.*
+**/android/**/captures/
+.gradle/
+local.properties
+android/key.properties
+*.jks
+*.keystore
+*.apk
+*.aab
+**/.cxx/
+
+# Windows
+windows/flutter/generated_plugin_registrant.cc
+windows/flutter/generated_plugin_registrant.h
+windows/flutter/generated_plugins.cmake
+*.exe
+*.msi
+
+# Linux
+linux/flutter/generated_plugin_registrant.cc
+linux/flutter/generated_plugin_registrant.h
+linux/flutter/generated_plugins.cmake
+*.AppImage
+*.deb
+*.rpm
+*.snap
+
+# =========================
+# Node / JavaScript
+# =========================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+package-lock.json
+.pnpm-debug.log
+
+# JS build artifacts
+dist/
+build/
+*.jsbundle
+*.map
+
+# =========================
+# Local environment / secrets
+# =========================
+.env
+.env.*
+.env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+secrets/
+*.secret
+
+# fastlane
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# =========================
+# Project specific / temporary
+# =========================
+apk_contents/
+local_moods_list.txt
+verify-pack-*.txt
+untracked-files.txt
+my-work-changes.patch
+*.patch
+
+# Internal dev folders you listed
+lib/migrations/
+lib/schema/
+lib/isolate_worker.dart
+lib/widgets/
+
+# Coverage / symbols / logs
+coverage/
+*.log
+*.buildlog
+*.symbols
+
+# Exceptions (if you intentionally want to keep some IDE defaults)
+# Uncomment and adjust if you need to keep default Xcode files in repo
+# !**/ios/**/default.mode1v3
+# !**/ios/**/default.mode2v3
+# !**/ios/**/default.pbxuser
+# !**/ios/**/default.perspectivev3
