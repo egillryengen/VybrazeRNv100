@@ -8,3 +8,4 @@ test('AppFooter renders', () => {
   expect(tree.toJSON()).toMatchSnapshot();
 });
 
+
