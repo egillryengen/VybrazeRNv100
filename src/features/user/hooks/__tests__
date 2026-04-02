@@ -1,48 +1,92 @@
-// src/features/user/hooks/__tests__/useDebouncedSave.test.ts
-import { renderHook, act } from '@testing-library/react-hooks';
-import { useDebouncedSave } from '../useDebouncedSave';
-
-jest.useFakeTimers();
-
-describe('useDebouncedSave', () => {
-  it('debounces calls and merges partials', async () => {
-    const mockSave = jest.fn().mockResolvedValue(undefined);
-    const { result } = renderHook(() => useDebouncedSave(mockSave, 500));
-
-    act(() => {
-      result.current.debouncedSave({ a: 1 });
-      result.current.debouncedSave({ b: 2 });
-    });
-
-    // advance time less than delay: should not have called save yet
-    act(() => {
-      jest.advanceTimersByTime(400);
-    });
-    expect(mockSave).not.toHaveBeenCalled();
-
-    // advance past delay
-    await act(async () => {
-      jest.advanceTimersByTime(200);
-    });
-
-    // save should be called once with merged partial
-    expect(mockSave).toHaveBeenCalledTimes(1);
-    expect(mockSave).toHaveBeenCalledWith({ a: 1, b: 2 });
-  });
-
-  it('flush calls save immediately', async () => {
-    const mockSave = jest.fn().mockResolvedValue(undefined);
-    const { result } = renderHook(() => useDebouncedSave(mockSave, 500));
-
-    act(() => {
-      result.current.debouncedSave({ x: 9 });
-    });
-
-    await act(async () => {
-      await result.current.flush();
-    });
-
-    expect(mockSave).toHaveBeenCalledTimes(1);
-    expect(mockSave).toHaveBeenCalledWith({ x: 9 });
-  });
-});
+[{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2304",
+	"severity": 8,
+	"message": "Cannot find name 'jest'.",
+	"source": "ts",
+	"startLineNumber": 6,
+	"startColumn": 1,
+	"endLineNumber": 6,
+	"endColumn": 5,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2304",
+	"severity": 8,
+	"message": "Cannot find name 'jest'.",
+	"source": "ts",
+	"startLineNumber": 7,
+	"startColumn": 23,
+	"endLineNumber": 7,
+	"endColumn": 27,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2593",
+	"severity": 8,
+	"message": "Cannot find name 'test'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.",
+	"source": "ts",
+	"startLineNumber": 10,
+	"startColumn": 1,
+	"endLineNumber": 10,
+	"endColumn": 5,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2749",
+	"severity": 8,
+	"message": "'App' refers to a value, but is being used as a type here. Did you mean 'typeof App'?",
+	"source": "ts",
+	"startLineNumber": 11,
+	"startColumn": 46,
+	"endLineNumber": 11,
+	"endColumn": 49,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "1005",
+	"severity": 8,
+	"message": "'>' expected.",
+	"source": "ts",
+	"startLineNumber": 11,
+	"startColumn": 50,
+	"endLineNumber": 11,
+	"endColumn": 51,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2304",
+	"severity": 8,
+	"message": "Cannot find name 'expect'.",
+	"source": "ts",
+	"startLineNumber": 15,
+	"startColumn": 5,
+	"endLineNumber": 15,
+	"endColumn": 11,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+},{
+	"resource": "/c:/VybrazeRNv100/src/features/user/hooks/__tests__",
+	"owner": "typescript",
+	"code": "2304",
+	"severity": 8,
+	"message": "Cannot find name 'expect'.",
+	"source": "ts",
+	"startLineNumber": 19,
+	"startColumn": 3,
+	"endLineNumber": 19,
+	"endColumn": 9,
+	"modelVersionId": 10,
+	"origin": "extHost1"
+}]
