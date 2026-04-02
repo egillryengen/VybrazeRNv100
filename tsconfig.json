@@ -8,7 +8,9 @@
     "baseUrl": "./",
     "paths": {
       "*": ["src/*"]
-    }
+    },
+    "types": ["node", "jest"],
+    "lib": ["es2019", "dom"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

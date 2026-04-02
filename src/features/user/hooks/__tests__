@@ -1,0 +1,48 @@
+// src/features/user/hooks/__tests__/useDebouncedSave.test.ts
+import { renderHook, act } from '@testing-library/react-hooks';
+import { useDebouncedSave } from '../useDebouncedSave';
+
+jest.useFakeTimers();
+
+describe('useDebouncedSave', () => {
+  it('debounces calls and merges partials', async () => {
+    const mockSave = jest.fn().mockResolvedValue(undefined);
+    const { result } = renderHook(() => useDebouncedSave(mockSave, 500));
+
+    act(() => {
+      result.current.debouncedSave({ a: 1 });
+      result.current.debouncedSave({ b: 2 });
+    });
+
+    // advance time less than delay: should not have called save yet
+    act(() => {
+      jest.advanceTimersByTime(400);
+    });
+    expect(mockSave).not.toHaveBeenCalled();
+
+    // advance past delay
+    await act(async () => {
+      jest.advanceTimersByTime(200);
+    });
+
+    // save should be called once with merged partial
+    expect(mockSave).toHaveBeenCalledTimes(1);
+    expect(mockSave).toHaveBeenCalledWith({ a: 1, b: 2 });
+  });
+
+  it('flush calls save immediately', async () => {
+    const mockSave = jest.fn().mockResolvedValue(undefined);
+    const { result } = renderHook(() => useDebouncedSave(mockSave, 500));
+
+    act(() => {
+      result.current.debouncedSave({ x: 9 });
+    });
+
+    await act(async () => {
+      await result.current.flush();
+    });
+
+    expect(mockSave).toHaveBeenCalledTimes(1);
+    expect(mockSave).toHaveBeenCalledWith({ x: 9 });
+  });
+});

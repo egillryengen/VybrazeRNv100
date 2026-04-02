@@ -1,41 +1,74 @@
 // src/features/user/screens/UserPerson/UserPerson.screen.tsx
+import React from 'react';
+import { ScrollView, View, Text, Button, StyleSheet } from 'react-native';
+import { User as RepoUser } from '../../repositories/userRepository';
+import { SaveIndicator } from '../../components/SaveIndicator';
 
-import React from "react";
-import { ScrollView } from "react-native";
+export interface UserPersonScreenProps {
+  user: RepoUser;
+  onFieldChange: (field: keyof RepoUser, value: unknown) => void;
+  updatePartial: (partial: Partial<RepoUser>) => Promise<RepoUser | null>;
+  onSave: () => Promise<void>;
+  isSaving?: boolean;
+  lastSaved?: string | null;
+}
 
-// Seksjoner (disse filene lager vi etterpå, én og én)
-import { UserNameSection } from "./sections/UserNameSection";
-import { UserPhotoSection } from "./sections/UserPhotoSection";
-import { UserBirthDateSection } from "./sections/UserBirthDateSection";
-import { UserGenderSection } from "./sections/UserGenderSection";
-import { UserCitySection } from "./sections/UserCitySection";
-import { UserLanguageSection } from "./sections/UserLanguageSection";
-import { UserContactInfoSection } from "./sections/UserContactInfoSection";
-import { UserVisibilitySection } from "./sections/UserVisibilitySection";
-import { UserPreferencesSection } from "./sections/UserPreferencesSection";
-import { UserBusinessSection } from "./sections/UserBusinessSection";
-
-export const UserPersonScreen = ({
+export const UserPersonScreen: React.FC<UserPersonScreenProps> = ({
   user,
   onFieldChange,
-  onSave,
   updatePartial,
+  onSave,
+  isSaving = false,
+  lastSaved = null,
 }) => {
   return (
-    <ScrollView>
-      <UserNameSection user={user} onChange={onFieldChange} />
-      <UserPhotoSection user={user} onChange={onFieldChange} />
-      <UserBirthDateSection user={user} onChange={onFieldChange} />
-      <UserGenderSection user={user} onChange={onFieldChange} />
-      <UserCitySection user={user} onChange={onFieldChange} />
-      <UserLanguageSection user={user} onChange={onFieldChange} />
-      <UserContactInfoSection user={user} onChange={onFieldChange} />
-      <UserVisibilitySection user={user} onChange={onFieldChange} />
-      <UserPreferencesSection user={user} onChange={onFieldChange} />
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.heading}>User profile</Text>
 
-      {user?.type !== "Person" && (
-        <UserBusinessSection user={user} onChange={onFieldChange} />
-      )}
+      <View style={styles.section}>
+        <Text style={styles.label}>First name</Text>
+        <Text style={styles.value}>{user.firstName}</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text style={styles.label}>Visibility</Text>
+        <Text style={styles.value}>{user.visibility}</Text>
+      </View>
+
+      <View style={styles.actions}>
+        <Button title={isSaving ? 'Saving...' : 'Save'} onPress={onSave} disabled={isSaving} />
+      </View>
+
+      <View style={styles.saveRow}>
+        <SaveIndicator isSaving={isSaving} lastSaved={lastSaved} />
+      </View>
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+  heading: {
+    fontSize: 20,
+    marginBottom: 12,
+  },
+  section: {
+    marginBottom: 12,
+  },
+  label: {
+    fontSize: 13,
+    color: '#666',
+  },
+  value: {
+    fontSize: 16,
+    color: '#111',
+  },
+  actions: {
+    marginTop: 20,
+  },
+  saveRow: {
+    marginTop: 12,
+  },
+});

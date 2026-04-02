@@ -36,7 +36,7 @@ Desktop.ini
 .packages
 .pub/
 .pub-cache/
-.pub-preload-cache/
+.pub-preload-cache
 .flutter-plugins
 .flutter-plugins-dependencies
 generated_plugin_registrant.*

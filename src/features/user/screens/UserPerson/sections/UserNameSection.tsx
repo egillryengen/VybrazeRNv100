@@ -1,33 +1,69 @@
 // src/features/user/screens/UserPerson/sections/UserNameSection.tsx
+import React from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-import React from "react";
-import { View, Text, TextInput } from "react-native";
+export interface UserNameSectionProps {
+  firstName?: string;
+  lastName?: string;
+  onChangeFirstName?: (value: string) => void;
+  onChangeLastName?: (value: string) => void;
+  labelFirstName?: string;
+  labelLastName?: string;
+  testID?: string;
+}
 
-type Props = {
-  user: any;
-  onChange: (field: string, value: any) => void;
-};
-
-export const UserNameSection = ({ user, onChange }: Props) => {
+export const UserNameSection: React.FC<UserNameSectionProps> = ({
+  firstName,
+  lastName,
+  onChangeFirstName,
+  onChangeLastName,
+  labelFirstName = 'First name',
+  labelLastName = 'Last name',
+  testID,
+}) => {
   return (
-    <View>
-      <Text>Display Name</Text>
+    <View style={styles.container} testID={testID ?? 'user-name-section'}>
+      <Text style={styles.label}>{labelFirstName}</Text>
       <TextInput
-        value={user?.displayName ?? ""}
-        onChangeText={(v) => onChange("displayName", v)}
+        style={styles.input}
+        value={firstName ?? ''}
+        placeholder="Given name"
+        onChangeText={(text) => onChangeFirstName?.(text)}
+        autoCapitalize="words"
+        autoCorrect={false}
+        testID="user-firstname-input"
       />
 
-      <Text>Given Name</Text>
+      <Text style={[styles.label, { marginTop: 12 }]}>{labelLastName}</Text>
       <TextInput
-        value={user?.givenName ?? ""}
-        onChangeText={(v) => onChange("givenName", v)}
-      />
-
-      <Text>Family Name</Text>
-      <TextInput
-        value={user?.familyName ?? ""}
-        onChangeText={(v) => onChange("familyName", v)}
+        style={styles.input}
+        value={lastName ?? ''}
+        placeholder="Family name"
+        onChangeText={(text) => onChangeLastName?.(text)}
+        autoCapitalize="words"
+        autoCorrect={false}
+        testID="user-lastname-input"
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 8,
+    paddingHorizontal: 12,
+  },
+  label: {
+    fontSize: 14,
+    color: '#222',
+    marginBottom: 6,
+  },
+  input: {
+    height: 44,
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff',
+  },
+});
