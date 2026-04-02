@@ -1,5 +1,5 @@
 // src/features/user/screens/UserPerson/UserPerson.container.tsx
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View, Text, ActivityIndicator, Alert, StyleSheet } from 'react-native';
 import {
   ensureTemplateUser,
@@ -19,17 +19,20 @@ export const UserPersonContainer: React.FC = () => {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [lastSaved, setLastSaved] = useState<string | null>(null);
 
+  // Guard to avoid state updates after unmount
+  const isMountedRef = useRef<boolean>(true);
+
   useEffect(() => {
-    let mounted = true;
+    isMountedRef.current = true;
 
     const init = async () => {
       try {
         const u = await ensureTemplateUser();
-        if (!mounted) return;
+        if (!isMountedRef.current) return;
         setUser(u);
         setIsReady(true);
       } catch (e: unknown) {
-        if (!mounted) return;
+        if (!isMountedRef.current) return;
         const msg = (e as Error)?.message ?? 'Failed to initialize user';
         setError(msg);
         setIsReady(true);
@@ -39,47 +42,62 @@ export const UserPersonContainer: React.FC = () => {
     init();
 
     return () => {
-      mounted = false;
+      isMountedRef.current = false;
     };
   }, []);
 
   const updatePartial = useCallback(
-    async (partial: Partial<LocalUser>) => {
+    async (partial: Partial<LocalUser>): Promise<LocalUser | null> => {
+      // Use local snapshot of mounted flag to avoid race conditions
+      const mounted = isMountedRef.current;
+
       if (!user) {
         try {
-          setIsSaving(true);
+          if (mounted) setIsSaving(true);
           const created = await createUser(partial);
+          if (!isMountedRef.current) return created;
           setUser(created);
-          setIsSaving(false);
-          setLastSaved(new Date().toISOString());
+          if (isMountedRef.current) {
+            setIsSaving(false);
+            setLastSaved(new Date().toISOString());
+          }
           return created;
         } catch (e: unknown) {
-          setIsSaving(false);
+          if (isMountedRef.current) setIsSaving(false);
           const msg = (e as Error)?.message ?? 'Failed to create user';
-          setError(msg);
-          Alert.alert('Error', msg);
+          if (isMountedRef.current) {
+            setError(msg);
+            Alert.alert('Error', msg);
+          }
           throw e;
         }
       }
 
       try {
-        setIsSaving(true);
+        if (mounted) setIsSaving(true);
         const updated = await updateUser(user.id, partial);
-        setIsSaving(false);
+        if (!isMountedRef.current) return updated ?? null;
+        if (isMountedRef.current) setIsSaving(false);
         if (!updated) {
           const msg = 'User not found during update';
-          setError(msg);
-          Alert.alert('Error', msg);
+          if (isMountedRef.current) {
+            setError(msg);
+            Alert.alert('Error', msg);
+          }
           return null;
         }
-        setUser(updated);
-        setLastSaved(new Date().toISOString());
+        if (isMountedRef.current) {
+          setUser(updated);
+          setLastSaved(new Date().toISOString());
+        }
         return updated;
       } catch (e: unknown) {
-        setIsSaving(false);
+        if (isMountedRef.current) setIsSaving(false);
         const msg = (e as Error)?.message ?? 'Failed to update user';
-        setError(msg);
-        Alert.alert('Error', msg);
+        if (isMountedRef.current) {
+          setError(msg);
+          Alert.alert('Error', msg);
+        }
         throw e;
       }
     },
@@ -88,47 +106,67 @@ export const UserPersonContainer: React.FC = () => {
 
   const { debouncedSave, flush, cancel } = useDebouncedSave<LocalUser>(updatePartial, 800);
 
-  const handleFieldChange = useCallback((field: keyof LocalUser, value: unknown) => {
-    setUser((prev: LocalUser | null) => {
-      if (!prev) return prev;
-      const next = { ...prev, [field]: value } as LocalUser;
-      return next;
-    });
+  const handleFieldChange = useCallback(
+    (field: keyof LocalUser, value: unknown) => {
+      setUser((prev: LocalUser | null) => {
+        if (!prev) return prev;
+        const next = { ...prev, [field]: value } as LocalUser;
+        return next;
+      });
 
-    debouncedSave({ [field]: value } as Partial<LocalUser>);
-  }, [debouncedSave]);
+      debouncedSave({ [field]: value } as Partial<LocalUser>);
+    },
+    [debouncedSave],
+  );
 
   const handleSave = useCallback(async () => {
     await flush();
     if (!user) {
-      Alert.alert('No user', 'No user to save');
+      if (isMountedRef.current) Alert.alert('No user', 'No user to save');
       return;
     }
     try {
-      setIsSaving(true);
+      if (isMountedRef.current) setIsSaving(true);
       const updated = await updateUser(user.id, user);
-      setIsSaving(false);
+      if (!isMountedRef.current) return;
+      if (isMountedRef.current) setIsSaving(false);
       if (!updated) {
         const msg = 'Failed to save user';
-        setError(msg);
-        Alert.alert('Error', msg);
+        if (isMountedRef.current) {
+          setError(msg);
+          Alert.alert('Error', msg);
+        }
         return;
       }
-      setUser(updated);
-      setLastSaved(new Date().toISOString());
+      if (isMountedRef.current) {
+        setUser(updated);
+        setLastSaved(new Date().toISOString());
+      }
     } catch (e: unknown) {
-      setIsSaving(false);
+      if (isMountedRef.current) setIsSaving(false);
       const msg = (e as Error)?.message ?? 'Save failed';
-      setError(msg);
-      Alert.alert('Error', msg);
+      if (isMountedRef.current) {
+        setError(msg);
+        Alert.alert('Error', msg);
+      }
     }
   }, [flush, user]);
 
   useEffect(() => {
     return () => {
-      cancel();
+      // Try to flush pending saves before unmounting, but don't block unmount.
+      // If flush throws, ensure we still cancel to avoid memory leaks.
+      (async () => {
+        try {
+          await flush();
+        } catch {
+          // ignore flush errors on unmount
+        } finally {
+          cancel();
+        }
+      })();
     };
-  }, [cancel]);
+  }, [flush, cancel]);
 
   if (!isReady) {
     return (

@@ -1,46 +1,37 @@
-// src/features/user/components/SaveIndicator.tsx
+// src/common/components/SaveIndicator.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 
-export interface SaveIndicatorProps {
+type Props = {
   isSaving?: boolean;
-  lastSaved?: string | null; // ISO timestamp
-}
+  lastSaved?: string | null;
+};
 
-export const SaveIndicator: React.FC<SaveIndicatorProps> = ({ isSaving = false, lastSaved = null }) => {
+export const SaveIndicator: React.FC<Props> = ({ isSaving = false, lastSaved = null }) => {
   if (isSaving) {
     return (
-      <View style={styles.container} testID="save-indicator-saving">
-        <Text style={styles.savingText}>Saving…</Text>
+      <View style={styles.row}>
+        <ActivityIndicator size="small" />
+        <Text style={styles.text}>Saving…</Text>
       </View>
     );
   }
 
-  if (lastSaved) {
-    const date = new Date(lastSaved);
-    const time = date.toLocaleTimeString();
-    return (
-      <View style={styles.container} testID="save-indicator-saved">
-        <Text style={styles.savedText}>Saved at {time}</Text>
-      </View>
-    );
-  }
-
-  return <View style={styles.container} testID="save-indicator-empty" />;
+  return (
+    <View style={styles.row}>
+      <Text style={styles.text}>{lastSaved ? `Saved ${new Date(lastSaved).toLocaleString()}` : 'Not saved'}</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 6,
-    paddingHorizontal: 8,
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  savingText: {
-    color: '#007AFF',
-    fontSize: 13,
-  },
-  savedText: {
+  text: {
+    marginLeft: 8,
+    fontSize: 12,
     color: '#666',
-    fontSize: 13,
   },
 });
-
