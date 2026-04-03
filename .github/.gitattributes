@@ -1,0 +1,6 @@
+# C:\VybrazeRNv100\.gitattributes
+* text=auto
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+yarn.lock text eol=lf

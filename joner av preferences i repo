@@ -1,0 +1,2 @@
+[35msrc/features/user/types.ts[m[36m:[m[32m30[m[36m:[m * [1;31mUserDraft[m brukes for delvise oppdateringer. Alle felter er valgfrie.
+[35msrc/features/user/types.ts[m[36m:[m[32m33[m[36m:[mexport interface [1;31mUserDraft[m {

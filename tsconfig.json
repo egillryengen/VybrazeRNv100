@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "jsx": "react-native",
+    "jsx": "react-jsx",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -12,10 +12,29 @@
     "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
-      "src/*": ["*"]
+      "src/*": [
+        "*"
+      ]
     },
-    "lib": ["ES2020"],
-    "ignoreDeprecations": "6.0"
+    "lib": [
+      "ES2020"
+    ],
+    "ignoreDeprecations": "6.0",
+    "types": [
+      "react",
+      "react-native",
+      "jest",
+      "node"
+    ]
   },
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
+  "include": [
+    "jest.setup.ts",
+    "src/types/**/*.d.ts"
+  ]
 }

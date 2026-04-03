@@ -1,0 +1,40 @@
+Title:
+test(mocks): add manual jest mocks and unit tests for UserPerson container
+
+Description:
+This PR adds reusable manual Jest mocks and focused unit tests for the UserPerson container to improve test reliability and maintainability.
+
+Changes included:
+- Add manual mock for userRepository
+  - Path: src/features/user/repositories/__mocks__/userRepository.ts
+  - Exports: mockUser, ensureTemplateUser, updateUser, createUser
+- Add manual mock for useDebouncedSave hook
+  - Path: src/features/user/hooks/__mocks__/useDebouncedSave.ts
+  - Exports: useDebouncedSave returning debouncedSave, flush, cancel
+- Add snapshot test for UserPersonContainer
+  - Path: src/features/user/screens/UserPerson/__tests__/UserPerson.container.snapshot.test.tsx
+  - Uses manual mocks and a minimal screen mock to focus snapshot on container behavior
+- Add autosave behavior unit test for UserPersonContainer
+  - Path: src/features/user/screens/UserPerson/__tests__/UserPerson.container.autosave.test.tsx
+  - Verifies debouncedSave is called on field change and flush/cancel are called on unmount
+- Minor fixes to tests to comply with Jest mock factory restrictions (mock variables prefixed with `mock`)
+
+Why:
+- Centralized manual mocks reduce duplication and avoid inline factory pitfalls.
+- Tests are deterministic and independent of external services.
+- Improves maintainability and makes future test additions simpler.
+
+How to review:
+1. Run the test suite locally: `yarn jest --runInBand`
+2. Inspect the new `__mocks__` modules for expected exported behavior.
+3. Review the two new tests for clarity and coverage of container behavior.
+
+Checklist:
+- [x] Tests pass locally
+- [x] Manual mocks added next to production modules
+- [x] Snapshot added and verified
+- [x] Autosave behavior test added and verified
+
+Notes:
+- No production code was changed.
+- If you prefer the repository mocks to live in a centralized test utilities folder instead of adjacent `__mocks__` folders, we can refactor in a follow-up PR.
