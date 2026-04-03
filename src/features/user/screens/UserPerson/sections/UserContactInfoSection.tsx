@@ -1,46 +1,44 @@
 // src/features/user/screens/UserPerson/sections/UserContactInfoSection.tsx
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 export interface UserContactInfoSectionProps {
+  phone?: string | null;
   email?: string;
-  phone?: string;
-  onChangeEmail?: (value: string) => void;
   onChangePhone?: (value: string) => void;
-  labelEmail?: string;
+  onChangeEmail?: (value: string) => void;
   labelPhone?: string;
+  labelEmail?: string;
   testID?: string;
 }
 
 export const UserContactInfoSection: React.FC<UserContactInfoSectionProps> = ({
-  email,
   phone,
-  onChangeEmail,
+  email,
   onChangePhone,
-  labelEmail = 'Email',
+  onChangeEmail,
   labelPhone = 'Phone',
+  labelEmail = 'Email',
   testID,
 }) => {
   return (
-    <View style={styles.container} testID={testID ?? 'user-contactinfo-section'}>
-      <Text style={styles.label}>{labelEmail}</Text>
-      <TextInput
-        style={styles.input}
-        value={email ?? ''}
-        placeholder="you@example.com"
-        onChangeText={(text) => onChangeEmail?.(text)}
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-
-      <Text style={[styles.label, { marginTop: 12 }]}>{labelPhone}</Text>
+    <View style={styles.container} testID={testID ?? 'user-contact-section'}>
+      <Text style={styles.label}>{labelPhone}</Text>
       <TextInput
         style={styles.input}
         value={phone ?? ''}
-        placeholder="+47 123 45 678"
-        onChangeText={(text) => onChangePhone?.(text)}
+        placeholder="Phone number"
+        onChangeText={text => onChangePhone?.(text)}
         keyboardType="phone-pad"
+      />
+
+      <Text style={styles.labelWithSpacing}>{labelEmail}</Text>
+      <TextInput
+        style={styles.input}
+        value={email ?? ''}
+        placeholder="Email address"
+        onChangeText={text => onChangeEmail?.(text)}
+        keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
       />
@@ -57,6 +55,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#222',
     marginBottom: 6,
+  },
+  labelWithSpacing: {
+    fontSize: 14,
+    color: '#222',
+    marginBottom: 6,
+    marginTop: 12,
   },
   input: {
     height: 44,

@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserCitySection.tsx
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 export interface UserCitySectionProps {
   city?: string;
@@ -24,7 +24,7 @@ export const UserCitySection: React.FC<UserCitySectionProps> = ({
         style={styles.input}
         value={city ?? ''}
         placeholder={placeholder}
-        onChangeText={(text) => onChangeCity?.(text)}
+        onChangeText={text => onChangeCity?.(text)}
         autoCapitalize="words"
         autoCorrect={false}
       />

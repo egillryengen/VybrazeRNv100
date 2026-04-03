@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserLanguageSection.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 export interface LanguageOption {
   key: string;
@@ -16,10 +16,10 @@ export interface UserLanguageSectionProps {
 }
 
 const DEFAULT_OPTIONS: LanguageOption[] = [
-  { key: 'no', label: 'Norsk' },
-  { key: 'en', label: 'English' },
-  { key: 'sv', label: 'Svenska' },
-  { key: 'da', label: 'Dansk' },
+  {key: 'no', label: 'Norsk'},
+  {key: 'en', label: 'English'},
+  {key: 'sv', label: 'Svenska'},
+  {key: 'da', label: 'Dansk'},
 ];
 
 export const UserLanguageSection: React.FC<UserLanguageSectionProps> = ({
@@ -35,7 +35,7 @@ export const UserLanguageSection: React.FC<UserLanguageSectionProps> = ({
     <View style={styles.container} testID={testID ?? 'user-language-section'}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.optionsRow}>
-        {options.map((opt) => {
+        {options.map(opt => {
           const isSelected = selected === opt.key;
           return (
             <TouchableOpacity
@@ -43,9 +43,12 @@ export const UserLanguageSection: React.FC<UserLanguageSectionProps> = ({
               style={[styles.option, isSelected && styles.optionSelected]}
               onPress={() => onChange?.(opt.key)}
               testID={`language-option-${opt.key}`}
-              accessibilityState={{ selected: isSelected }}
-            >
-              <Text style={[styles.optionText, isSelected && styles.optionTextSelected]}>
+              accessibilityState={{selected: isSelected}}>
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}>
                 {opt.label}
               </Text>
             </TouchableOpacity>

@@ -36,10 +36,15 @@ export async function getUserById(id: string): Promise<User | null> {
   return Promise.resolve(_store[id] ?? null);
 }
 
-export async function updateUser(id: string, partial: Partial<User>): Promise<User | null> {
+export async function updateUser(
+  id: string,
+  partial: Partial<User>,
+): Promise<User | null> {
   const existing = _store[id];
-  if (!existing) return Promise.resolve(null);
-  const updated = { ...existing, ...partial };
+  if (!existing) {
+    return Promise.resolve(null);
+  }
+  const updated = {...existing, ...partial};
   _store[id] = updated;
   return Promise.resolve(updated);
 }
@@ -54,7 +59,7 @@ export async function ensureTemplateUser(): Promise<User> {
     lastName: 'User',
     email: 'template@example.com',
     visibility: 'private',
-    preferences: { receiveNewsletter: false, darkMode: false },
+    preferences: {receiveNewsletter: false, darkMode: false},
   };
   return createUser(template);
 }

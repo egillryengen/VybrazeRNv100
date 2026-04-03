@@ -1,6 +1,6 @@
 // components/TestVybraze.tsx
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 export default function TestVybraze() {
   return (
@@ -12,6 +12,11 @@ export default function TestVybraze() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 16 },
-  title: { fontSize: 24, fontWeight: '700', marginBottom: 8 },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+  },
+  title: {fontSize: 24, fontWeight: '700', marginBottom: 8},
 });

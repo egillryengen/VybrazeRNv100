@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserPreferencesSection.tsx
 import React from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
+import {View, Text, Switch, StyleSheet} from 'react-native';
 
 export interface UserPreferences {
   receiveNewsletter?: boolean;
@@ -25,15 +25,17 @@ export const UserPreferencesSection: React.FC<UserPreferencesSectionProps> = ({
   const darkMode = !!preferences.darkMode;
 
   const setNewsletter = (value: boolean) => {
-    onChange?.({ ...preferences, receiveNewsletter: value });
+    onChange?.({...preferences, receiveNewsletter: value});
   };
 
   const setDarkMode = (value: boolean) => {
-    onChange?.({ ...preferences, darkMode: value });
+    onChange?.({...preferences, darkMode: value});
   };
 
   return (
-    <View style={styles.container} testID={testID ?? 'user-preferences-section'}>
+    <View
+      style={styles.container}
+      testID={testID ?? 'user-preferences-section'}>
       <Text style={styles.label}>{label}</Text>
 
       <View style={styles.row}>
@@ -47,7 +49,11 @@ export const UserPreferencesSection: React.FC<UserPreferencesSectionProps> = ({
 
       <View style={styles.row}>
         <Text style={styles.rowLabel}>Dark mode</Text>
-        <Switch value={darkMode} onValueChange={setDarkMode} testID="pref-darkmode-switch" />
+        <Switch
+          value={darkMode}
+          onValueChange={setDarkMode}
+          testID="pref-darkmode-switch"
+        />
       </View>
     </View>
   );

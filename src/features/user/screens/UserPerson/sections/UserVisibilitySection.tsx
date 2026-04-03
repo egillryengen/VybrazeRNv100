@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserVisibilitySection.tsx
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
 export type VisibilityOption = 'public' | 'private' | 'friends';
 
@@ -11,10 +11,10 @@ export interface UserVisibilitySectionProps {
   testID?: string;
 }
 
-const OPTIONS: { key: VisibilityOption; label: string }[] = [
-  { key: 'public', label: 'Public' },
-  { key: 'private', label: 'Private' },
-  { key: 'friends', label: 'Friends' },
+const OPTIONS: {key: VisibilityOption; label: string}[] = [
+  {key: 'public', label: 'Public'},
+  {key: 'private', label: 'Private'},
+  {key: 'friends', label: 'Friends'},
 ];
 
 export const UserVisibilitySection: React.FC<UserVisibilitySectionProps> = ({
@@ -29,7 +29,7 @@ export const UserVisibilitySection: React.FC<UserVisibilitySectionProps> = ({
     <View style={styles.container} testID={testID ?? 'user-visibility-section'}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.optionsRow}>
-        {OPTIONS.map((opt) => {
+        {OPTIONS.map(opt => {
           const isSelected = selected === opt.key;
           return (
             <TouchableOpacity
@@ -37,9 +37,12 @@ export const UserVisibilitySection: React.FC<UserVisibilitySectionProps> = ({
               style={[styles.option, isSelected && styles.optionSelected]}
               onPress={() => onChange?.(opt.key)}
               testID={`visibility-option-${opt.key}`}
-              accessibilityState={{ selected: isSelected }}
-            >
-              <Text style={[styles.optionText, isSelected && styles.optionTextSelected]}>
+              accessibilityState={{selected: isSelected}}>
+              <Text
+                style={[
+                  styles.optionText,
+                  isSelected && styles.optionTextSelected,
+                ]}>
                 {opt.label}
               </Text>
             </TouchableOpacity>

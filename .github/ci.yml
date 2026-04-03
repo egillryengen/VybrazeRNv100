@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, strukturering_1e ]
+    branches: [main, strukturering_1e]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:

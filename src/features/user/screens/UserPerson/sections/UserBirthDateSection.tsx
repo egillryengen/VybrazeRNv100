@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserBirthDateSection.tsx
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 export interface UserBirthDateSectionProps {
   value?: string;
@@ -25,7 +25,7 @@ export const UserBirthDateSection: React.FC<UserBirthDateSectionProps> = ({
         style={styles.input}
         value={value ?? ''}
         placeholder={placeholder}
-        onChangeText={(text) => onChange?.(text)}
+        onChangeText={text => onChange?.(text)}
         keyboardType="default"
         autoCapitalize="none"
         autoCorrect={false}

@@ -1,13 +1,16 @@
 // src/common/components/SaveIndicator.tsx
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 
 type Props = {
   isSaving?: boolean;
   lastSaved?: string | null;
 };
 
-export const SaveIndicator: React.FC<Props> = ({ isSaving = false, lastSaved = null }) => {
+export const SaveIndicator: React.FC<Props> = ({
+  isSaving = false,
+  lastSaved = null,
+}) => {
   if (isSaving) {
     return (
       <View style={styles.row}>
@@ -19,7 +22,11 @@ export const SaveIndicator: React.FC<Props> = ({ isSaving = false, lastSaved = n
 
   return (
     <View style={styles.row}>
-      <Text style={styles.text}>{lastSaved ? `Saved ${new Date(lastSaved).toLocaleString()}` : 'Not saved'}</Text>
+      <Text style={styles.text}>
+        {lastSaved
+          ? `Saved ${new Date(lastSaved).toLocaleString()}`
+          : 'Not saved'}
+      </Text>
     </View>
   );
 };

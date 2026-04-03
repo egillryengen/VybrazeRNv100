@@ -1,16 +1,19 @@
 Erstatt eller legg til dette avsnittet i README.md (hele snippet):
 
 md
+
 # VybrazeRNv100
 
 **Package manager**  
 This repository uses **Yarn** as the canonical package manager. Always use Yarn for local installs and CI.
 
-**Install locally**  
+**Install locally**
+
 1. Remove existing node_modules:
    ```bash
    rd /s /q node_modules
-Install using Yarn and the lockfile:
+   Install using Yarn and the lockfile:
+   ```
 
 bash
 yarn install --frozen-lockfile
@@ -39,7 +42,9 @@ Code
 ---
 
 ### GitHub Actions CI workflow
+
 **Filsti øverst i filen:**
+
 ```text
 C:\VybrazeRNv100\.github\workflows\ci.yml
 Hele workflowfilen du kan opprette:
@@ -73,3 +78,4 @@ jobs:
 
       - name: Run tests
         run: npx jest --runInBand --ci
+```

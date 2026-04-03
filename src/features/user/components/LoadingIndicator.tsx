@@ -1,12 +1,12 @@
 // src/common/components/LoadingIndicator.tsx
 import React from 'react';
-import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import {View, ActivityIndicator, Text, StyleSheet} from 'react-native';
 
 type Props = {
   message?: string;
 };
 
-export const LoadingIndicator: React.FC<Props> = ({ message = 'Loading…' }) => {
+export const LoadingIndicator: React.FC<Props> = ({message = 'Loading…'}) => {
   return (
     <View style={styles.center}>
       <ActivityIndicator size="large" />

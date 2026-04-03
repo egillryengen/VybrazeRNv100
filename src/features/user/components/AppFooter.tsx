@@ -1,21 +1,21 @@
 // src/common/components/AppFooter.tsx
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { AppColors } from 'src/common/theme/appColors';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {AppColors} from 'src/common/theme/appColors';
 
 type Props = {
   currentIndex: number;
   onTap: (index: number) => void;
-  items?: { icon?: React.ReactNode; label: string }[];
+  items?: {icon?: React.ReactNode; label: string}[];
 };
 
-export const AppFooter: React.FC<Props> = ({ currentIndex, onTap, items }) => {
+export const AppFooter: React.FC<Props> = ({currentIndex, onTap, items}) => {
   const navItems = items ?? [
-    { label: 'Home' },
-    { label: 'Search' },
-    { label: 'Create' },
-    { label: 'Alerts' },
-    { label: 'Profile' },
+    {label: 'Home'},
+    {label: 'Search'},
+    {label: 'Create'},
+    {label: 'Alerts'},
+    {label: 'Profile'},
   ];
 
   return (
@@ -28,10 +28,11 @@ export const AppFooter: React.FC<Props> = ({ currentIndex, onTap, items }) => {
             style={styles.item}
             onPress={() => onTap(idx)}
             accessibilityRole="button"
-            accessibilityState={{ selected }}
-          >
+            accessibilityState={{selected}}>
             {it.icon ?? null}
-            <Text style={[styles.label, selected ? styles.selected : null]}>{it.label}</Text>
+            <Text style={[styles.label, selected ? styles.selected : null]}>
+              {it.label}
+            </Text>
           </TouchableOpacity>
         );
       })}

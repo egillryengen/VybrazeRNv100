@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserBusinessSection.tsx
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 export interface UserBusinessSectionProps {
   company?: string;
@@ -28,17 +28,17 @@ export const UserBusinessSection: React.FC<UserBusinessSectionProps> = ({
         style={styles.input}
         value={company ?? ''}
         placeholder="Company name"
-        onChangeText={(text) => onChangeCompany?.(text)}
+        onChangeText={text => onChangeCompany?.(text)}
         autoCapitalize="words"
         autoCorrect={false}
       />
 
-      <Text style={[styles.label, { marginTop: 12 }]}>{labelTitle}</Text>
+      <Text style={styles.labelWithSpacing}>{labelTitle}</Text>
       <TextInput
         style={styles.input}
         value={title ?? ''}
         placeholder="Job title"
-        onChangeText={(text) => onChangeTitle?.(text)}
+        onChangeText={text => onChangeTitle?.(text)}
         autoCapitalize="words"
         autoCorrect={false}
       />
@@ -55,6 +55,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#222',
     marginBottom: 6,
+  },
+  labelWithSpacing: {
+    fontSize: 14,
+    color: '#222',
+    marginBottom: 6,
+    marginTop: 12,
   },
   input: {
     height: 44,

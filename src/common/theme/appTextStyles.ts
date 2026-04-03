@@ -1,7 +1,7 @@
 // src/common/theme/appTextStyles.ts
-import { TextStyle } from 'react-native';
+import {TextStyle} from 'react-native';
 
-export const AppTextStyles: { [key: string]: TextStyle } = {
+export const AppTextStyles: {[key: string]: TextStyle} = {
   heading1: {
     fontSize: 28,
     fontWeight: '700',

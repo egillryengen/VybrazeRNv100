@@ -1,5 +1,5 @@
 // src/common/theme/appTheme.ts
-import { AppColors } from './appColors';
+import {AppColors} from './appColors';
 
 export type AppThemeShape = {
   background: string;

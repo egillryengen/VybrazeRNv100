@@ -1,1 +1,1 @@
-declare module '@testing-library/jest-native/extend-expect'; 
+declare module '@testing-library/jest-native/extend-expect';

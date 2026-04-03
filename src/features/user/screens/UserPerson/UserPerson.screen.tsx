@@ -1,8 +1,8 @@
 // src/features/user/screens/UserPerson/UserPerson.screen.tsx
 import React from 'react';
-import { ScrollView, View, Text, Button, StyleSheet } from 'react-native';
-import { User as RepoUser } from '../../repositories/userRepository';
-import { SaveIndicator } from '../../components/SaveIndicator';
+import {ScrollView, View, Text, Button, StyleSheet} from 'react-native';
+import {User as RepoUser} from '../../repositories/userRepository';
+import {SaveIndicator} from '../../components/SaveIndicator';
 
 export interface UserPersonScreenProps {
   user: RepoUser;
@@ -15,8 +15,8 @@ export interface UserPersonScreenProps {
 
 export const UserPersonScreen: React.FC<UserPersonScreenProps> = ({
   user,
-  onFieldChange,
-  updatePartial,
+  onFieldChange: _onFieldChange,
+  updatePartial: _updatePartial,
   onSave,
   isSaving = false,
   lastSaved = null,
@@ -36,7 +36,11 @@ export const UserPersonScreen: React.FC<UserPersonScreenProps> = ({
       </View>
 
       <View style={styles.actions}>
-        <Button title={isSaving ? 'Saving...' : 'Save'} onPress={onSave} disabled={isSaving} />
+        <Button
+          title={isSaving ? 'Saving...' : 'Save'}
+          onPress={onSave}
+          disabled={isSaving}
+        />
       </View>
 
       <View style={styles.saveRow}>

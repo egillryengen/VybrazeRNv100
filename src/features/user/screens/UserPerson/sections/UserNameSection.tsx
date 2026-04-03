@@ -1,6 +1,6 @@
 // src/features/user/screens/UserPerson/sections/UserNameSection.tsx
 import React from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import {View, Text, TextInput, StyleSheet} from 'react-native';
 
 export interface UserNameSectionProps {
   firstName?: string;
@@ -27,22 +27,18 @@ export const UserNameSection: React.FC<UserNameSectionProps> = ({
       <TextInput
         style={styles.input}
         value={firstName ?? ''}
-        placeholder="Given name"
-        onChangeText={(text) => onChangeFirstName?.(text)}
+        placeholder="First name"
+        onChangeText={text => onChangeFirstName?.(text)}
         autoCapitalize="words"
-        autoCorrect={false}
-        testID="user-firstname-input"
       />
 
-      <Text style={[styles.label, { marginTop: 12 }]}>{labelLastName}</Text>
+      <Text style={styles.labelWithSpacing}>{labelLastName}</Text>
       <TextInput
         style={styles.input}
         value={lastName ?? ''}
-        placeholder="Family name"
-        onChangeText={(text) => onChangeLastName?.(text)}
+        placeholder="Last name"
+        onChangeText={text => onChangeLastName?.(text)}
         autoCapitalize="words"
-        autoCorrect={false}
-        testID="user-lastname-input"
       />
     </View>
   );
@@ -57,6 +53,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#222',
     marginBottom: 6,
+  },
+  labelWithSpacing: {
+    fontSize: 14,
+    color: '#222',
+    marginBottom: 6,
+    marginTop: 12,
   },
   input: {
     height: 44,

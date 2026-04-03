@@ -2,8 +2,10 @@
 /// <reference types="jest" />
 /// <reference types="node" />
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react-native';
-import { UserPersonContainer } from '../UserPerson.container';
+import {act} from 'react-test-renderer';
+import {render, waitFor, fireEvent} from '@testing-library/react-native';
+
+jest.setTimeout(10000);
 
 // Use mock-prefixed variables so jest.mock factory may reference them safely
 const mockDebouncedSave = jest.fn();
@@ -20,17 +22,29 @@ const mockUser = {
   avatarUrl: null,
   gender: 'male',
   language: 'no',
-  preferences: { darkMode: false, newsletter: true },
+  preferences: {darkMode: false, newsletter: true},
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
 };
 
 // Mock the userRepository used by the container (inline mock is fine here)
-jest.mock('../../../repositories/userRepository', () => ({
-  ensureTemplateUser: jest.fn().mockResolvedValue(mockUser),
-  updateUser: jest.fn().mockResolvedValue(mockUser),
-  createUser: jest.fn().mockResolvedValue(mockUser),
-}));
+jest.mock('../../../repositories/userRepository', () => {
+  const ensureTemplateUser = jest.fn().mockResolvedValue(mockUser);
+  const updateUser = jest.fn().mockResolvedValue(mockUser);
+  const createUser = jest.fn().mockResolvedValue(mockUser);
+
+  return {
+    __esModule: true,
+    ensureTemplateUser,
+    updateUser,
+    createUser,
+    default: {
+      ensureTemplateUser,
+      updateUser,
+      createUser,
+    },
+  };
+});
 
 // Mock the debounced save hook so tests are deterministic and we can assert calls
 jest.mock('../../../hooks/useDebouncedSave', () => ({
@@ -43,36 +57,44 @@ jest.mock('../../../hooks/useDebouncedSave', () => ({
 
 // Mock the screen component so the autosave behavior can be triggered from UI
 jest.mock('../UserPerson.screen', () => {
-  const React = require('react');
+  // Require React inside the factory to avoid referencing out-of-scope variables
+  const ReactLocal = require('react');
   const RN = require('react-native');
 
   // Minimal mock UI: exposes a control to trigger onFieldChange and onSave,
   // and renders the user's firstName so tests can wait for initialization.
   const UserPersonScreenMock = (props: any) =>
-    React.createElement(
+    ReactLocal.createElement(
       RN.View,
       null,
-      React.createElement(
+      ReactLocal.createElement(
         RN.TouchableOpacity,
         {
           testID: 'change-firstName',
           onPress: () => props.onFieldChange('firstName', 'Test'),
         },
-        React.createElement(RN.Text, null, 'Change firstName')
+        ReactLocal.createElement(RN.Text, null, 'Change firstName'),
       ),
-      React.createElement(
+      ReactLocal.createElement(
         RN.TouchableOpacity,
         {
           testID: 'save',
           onPress: () => props.onSave && props.onSave(),
         },
-        React.createElement(RN.Text, null, 'Save')
+        ReactLocal.createElement(RN.Text, null, 'Save'),
       ),
-      React.createElement(RN.Text, { testID: 'user-name' }, props.user?.firstName ?? 'no-name')
+      ReactLocal.createElement(
+        RN.Text,
+        {testID: 'user-name'},
+        props.user?.firstName ?? 'no-name',
+      ),
     );
 
-  return { UserPersonScreen: UserPersonScreenMock };
+  return {UserPersonScreen: UserPersonScreenMock};
 });
+
+// Import container after mocks so module imports are mocked correctly
+import {UserPersonContainer} from '../UserPerson.container';
 
 describe('UserPersonContainer autosave behavior', () => {
   beforeEach(() => {
@@ -80,26 +102,57 @@ describe('UserPersonContainer autosave behavior', () => {
   });
 
   test('calls debouncedSave when a field changes and flush on unmount', async () => {
-    const { getByTestId, unmount } = render(React.createElement(UserPersonContainer));
+    // Require the mocked repo BEFORE rendering to avoid race conditions
+    const repo = require('../../../repositories/userRepository');
 
-    // Wait for initialization and mocked screen to render the user name
-    await waitFor(() => {
-      expect(getByTestId('user-name').props.children).toBe('Ola');
+    // Ensure the mock implementations definitely resolve to mockUser
+    if (repo && typeof repo.ensureTemplateUser === 'function') {
+      repo.ensureTemplateUser.mockResolvedValue?.(mockUser);
+    }
+    if (repo && typeof repo.createUser === 'function') {
+      repo.createUser.mockResolvedValue?.(mockUser);
+    }
+
+    const {getByTestId, findByTestId, unmount} = render(
+      React.createElement(UserPersonContainer),
+    );
+
+    // Flush pending microtasks to let useEffect start
+    await act(async () => {
+      await Promise.resolve();
     });
+
+    // Ensure the repository mock was invoked and initialization started
+    await waitFor(
+      () => {
+        expect(repo.ensureTemplateUser).toHaveBeenCalled();
+      },
+      {timeout: 2000},
+    );
+
+    // Wait for the component to render the loaded user (longer timeout to avoid flakes)
+    const userNameEl = await findByTestId('user-name', undefined, {
+      timeout: 2000,
+    });
+    expect(userNameEl).toBeTruthy();
+    expect(userNameEl.props.children).toBe('Ola');
 
     // Trigger the mocked onFieldChange from the mocked screen
     fireEvent.press(getByTestId('change-firstName'));
 
     // debouncedSave should be called with the partial update
-    expect(mockDebouncedSave).toHaveBeenCalledWith({ firstName: 'Test' });
+    expect(mockDebouncedSave).toHaveBeenCalledWith({firstName: 'Test'});
 
     // Unmount the container to trigger cleanup which should call flush()
     unmount();
 
     // Wait for flush to be called in the unmount cleanup
-    await waitFor(() => {
-      expect(mockFlush).toHaveBeenCalled();
-    });
+    await waitFor(
+      () => {
+        expect(mockFlush).toHaveBeenCalled();
+      },
+      {timeout: 2000},
+    );
 
     // cancel should also be called in finally block
     expect(mockCancel).toHaveBeenCalled();

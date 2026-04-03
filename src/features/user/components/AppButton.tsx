@@ -8,8 +8,8 @@ import {
   TextStyle,
   GestureResponderEvent,
 } from 'react-native';
-import { lightTheme } from 'src/common/theme/appTheme';
-import { AppTextStyles } from 'src/common/theme/appTextStyles';
+import {lightTheme} from 'src/common/theme/appTheme';
+import {AppTextStyles} from 'src/common/theme/appTextStyles';
 
 export enum AppButtonType {
   primary = 'primary',
@@ -52,7 +52,7 @@ export const AppButton: React.FC<Props> = ({
     case AppButtonType.white:
       background = '#FFFFFF';
       color = theme.foreground;
-      borderStyle = { borderWidth: 1, borderColor: `${theme.foreground}33` };
+      borderStyle = {borderWidth: 1, borderColor: `${theme.foreground}33`};
       break;
     case AppButtonType.ghost:
       background = 'transparent';
@@ -63,21 +63,27 @@ export const AppButton: React.FC<Props> = ({
       break;
   }
 
-  if (backgroundOverride) background = backgroundOverride;
+  if (backgroundOverride) {
+    background = backgroundOverride;
+  }
 
   return (
     <Pressable
       onPress={onPress}
       disabled={disabled}
       accessibilityLabel={accessibilityLabel ?? label}
-      style={({ pressed }) => [
+      style={({pressed}) => [
         styles.button,
         borderStyle,
         style,
-        { backgroundColor: pressed ? theme.hoverBlue : background, opacity: disabled ? 0.6 : 1 },
-      ]}
-    >
-      <Text style={[AppTextStyles.button, styles.label, { color }, textStyle]}>{label}</Text>
+        {
+          backgroundColor: pressed ? theme.hoverBlue : background,
+          opacity: disabled ? 0.6 : 1,
+        },
+      ]}>
+      <Text style={[AppTextStyles.button, styles.label, {color}, textStyle]}>
+        {label}
+      </Text>
     </Pressable>
   );
 };

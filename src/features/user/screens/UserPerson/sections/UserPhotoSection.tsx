@@ -1,6 +1,13 @@
 // src/features/user/screens/UserPerson/sections/UserPhotoSection.tsx
 import React from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 
 export interface UserPhotoSectionProps {
   photoUrl?: string;
@@ -28,7 +35,11 @@ export const UserPhotoSection: React.FC<UserPhotoSectionProps> = ({
       <View style={styles.previewRow}>
         <View style={styles.previewBox}>
           {displayUrl ? (
-            <Image source={{ uri: displayUrl }} style={styles.image} resizeMode="cover" />
+            <Image
+              source={{uri: displayUrl}}
+              style={styles.image}
+              resizeMode="cover"
+            />
           ) : (
             <View style={styles.placeholder}>
               <Text style={styles.placeholderText}>No photo</Text>
@@ -41,7 +52,7 @@ export const UserPhotoSection: React.FC<UserPhotoSectionProps> = ({
             style={styles.input}
             value={displayUrl}
             placeholder={placeholder}
-            onChangeText={(text) => onChangePhoto?.(text)}
+            onChangeText={text => onChangePhoto?.(text)}
             autoCapitalize="none"
             autoCorrect={false}
             testID="user-photo-url-input"
@@ -50,8 +61,7 @@ export const UserPhotoSection: React.FC<UserPhotoSectionProps> = ({
           <TouchableOpacity
             style={styles.button}
             onPress={() => onPickPhoto?.()}
-            testID="user-photo-pick-button"
-          >
+            testID="user-photo-pick-button">
             <Text style={styles.buttonText}>Pick Photo</Text>
           </TouchableOpacity>
         </View>
