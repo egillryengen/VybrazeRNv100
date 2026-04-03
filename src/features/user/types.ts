@@ -1,21 +1,33 @@
-export interface User {
-  id: string;
-  name: string;
-  photoUrl?: string | null;
-  birthDate?: string | null;
-  gender?: 'male' | 'female' | 'other' | null;
-  city?: string | null;
-  language?: string | null;
-  contact?: {
-    email?: string | null;
-    phone?: string | null;
-  };
-  visibility?: 'public' | 'private' | 'friends';
-  preferences?: Record<string, unknown>;
-  business?: {
-    company?: string | null;
-    title?: string | null;
-  };
+// src/features/user/types.ts
+export type ID = string;
+
+export interface Preferences {
+  darkMode?: boolean;
+  newsletter?: boolean;
+  [key: string]: unknown;
 }
 
-export type UserDraft = Partial<User>;
+export interface User {
+  id: ID;
+  firstName: string;
+  lastName: string;
+  email?: string | null;
+  phone?: string | null;
+  avatarUrl?: string | null;
+  gender?: 'male' | 'female' | 'other' | null;
+  language?: string | null;
+  preferences?: Preferences;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface UserDraft {
+  firstName?: string;
+  lastName?: string;
+  email?: string | null;
+  phone?: string | null;
+  avatarUrl?: string | null;
+  gender?: User['gender'];
+  language?: string | null;
+  preferences?: Preferences;
+}
