@@ -20,7 +20,7 @@ export const UserPersonContainer: React.FC = () => {
   const [lastSaved, setLastSaved] = useState<string | null>(null);
 
   // Guard to avoid state updates after unmount
-  const isMountedRef = useRef<boolean>(true);
+  const isMountedRef = useRef<boolean>(false);
 
   useEffect(() => {
     isMountedRef.current = true;
@@ -51,6 +51,7 @@ export const UserPersonContainer: React.FC = () => {
       // Use local snapshot of mounted flag to avoid race conditions
       const mounted = isMountedRef.current;
 
+      // If no user exists yet, create one
       if (!user) {
         try {
           if (mounted) setIsSaving(true);
@@ -73,6 +74,7 @@ export const UserPersonContainer: React.FC = () => {
         }
       }
 
+      // Update existing user
       try {
         if (mounted) setIsSaving(true);
         const updated = await updateUser(user.id, partial);
@@ -108,6 +110,7 @@ export const UserPersonContainer: React.FC = () => {
 
   const handleFieldChange = useCallback(
     (field: keyof LocalUser, value: unknown) => {
+      // Update local state immediately using functional update to avoid stale closures
       setUser((prev: LocalUser | null) => {
         if (!prev) return prev;
         const next = { ...prev, [field]: value } as LocalUser;
