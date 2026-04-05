@@ -1,7 +1,7 @@
 // src/features/user/screens/UserPerson/UserPerson.container.tsx
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Text} from 'react-native';
-import * as userRepository from '../../repositories/userRepository';
+import * as repoModule from '../../repositories/userRepository';
 import {useDebouncedSave} from '../../hooks/useDebouncedSave';
 
 /**
@@ -10,11 +10,13 @@ import {useDebouncedSave} from '../../hooks/useDebouncedSave';
  * - Guards setState with isMountedRef to avoid unmounted updates.
  */
 
+type AnyUser = Record<string, any>;
+
 export const UserPersonContainer: React.FC = () => {
-  const [user, setUser] = useState<any | null>(null);
-  const [isSaving, setIsSaving] = useState(false);
+  const [user, setUser] = useState<AnyUser | null>(null);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
   const [lastSaved, setLastSaved] = useState<string | null>(null);
-  const isMountedRef = useRef(true);
+  const isMountedRef = useRef<boolean>(false);
 
   const {debouncedSave, flush, cancel} = useDebouncedSave();
 
@@ -23,12 +25,16 @@ export const UserPersonContainer: React.FC = () => {
 
     const init = async () => {
       try {
+        // repoModule may export functions directly or as default; support both shapes
         const repo: any =
-          (userRepository && (userRepository as any).ensureTemplateUser
-            ? userRepository
-            : (userRepository as any).default) || userRepository;
+          (repoModule && (repoModule as any).ensureTemplateUser
+            ? repoModule
+            : (repoModule as any).default) || repoModule;
 
-        let u = await repo.ensureTemplateUser();
+        let u: AnyUser | null = null;
+        if (typeof repo?.ensureTemplateUser === 'function') {
+          u = await repo.ensureTemplateUser();
+        }
 
         // Fallback: hvis ensureTemplateUser returnerer falsy, prøv createUser (mocket i tester)
         if (!u && typeof repo?.createUser === 'function') {
@@ -39,7 +45,7 @@ export const UserPersonContainer: React.FC = () => {
               email: 'ola@example.com',
             });
           } catch {
-            // ignore
+            // ignore fallback error
           }
         }
 
@@ -49,8 +55,9 @@ export const UserPersonContainer: React.FC = () => {
         if (u) {
           setUser(u);
         }
-      } catch {
-        // swallow errors in stub
+      } catch (err: unknown) {
+        // swallow errors in stub; optionally log in dev
+        // console.warn("UserPersonContainer init error:", err);
       }
     };
 
@@ -69,16 +76,18 @@ export const UserPersonContainer: React.FC = () => {
 
   const onFieldChange = (key: string, value: any) => {
     const partial = {[key]: value};
-    setUser((prev: any) => ({...(prev ?? {}), ...partial}));
+    setUser(prev => ({...(prev ?? {}), ...partial}));
     debouncedSave?.(partial);
   };
 
-  const updatePartial = async (partial: Partial<any>) => {
+  const updatePartial = async (
+    partial: Partial<AnyUser>,
+  ): Promise<AnyUser | null> => {
     try {
       const repo: any =
-        (userRepository && (userRepository as any).updateUser
-          ? userRepository
-          : (userRepository as any).default) || userRepository;
+        (repoModule && (repoModule as any).updateUser
+          ? repoModule
+          : (repoModule as any).default) || repoModule;
 
       if (!user?.id) {
         return null;
@@ -87,8 +96,8 @@ export const UserPersonContainer: React.FC = () => {
       if (isMountedRef.current && updated) {
         setUser(updated);
       }
-      return updated;
-    } catch {
+      return updated ?? null;
+    } catch (err: unknown) {
       return null;
     }
   };
@@ -118,6 +127,7 @@ export const UserPersonContainer: React.FC = () => {
   // Prøv å require presentasjonskomponenten i runtime (Jest mock vil bli brukt hvis satt opp)
   let Screen: React.ComponentType<any> | null = null;
   try {
+    // relative path from this file to the screen
     const mod = require('./UserPerson.screen') as any;
     Screen = mod?.UserPersonScreen ?? mod?.default ?? null;
   } catch {

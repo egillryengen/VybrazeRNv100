@@ -8,3 +8,13 @@ Kort sjekkliste før commit (lim inn i PR‑mal)
 [ ] yarn.lock er committet hvis den ble endret
 
 [ ] package-lock.json er ikke committet
+
+rd /s /q node_modules
+
+npx jest --clearCache
+
+git status --porcelain
+
+yarn install --frozen-lockfile
+
+git diff --name-only -- yarn.lock package-lock.json hvis endret
