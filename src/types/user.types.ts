@@ -1,7 +1,8 @@
 // File: src/features/user/types/user.types.ts
+
 export type ISODateString = string;
 
-export type Coordinates = {lat: number; lng: number} | string | null;
+export type Coordinates = { lat: number; lng: number } | string | null;
 
 export enum Visibility {
   PUBLIC = 'public',
@@ -96,16 +97,17 @@ export interface UserDraft {
   } | null;
 }
 
+/**
+ * Patched to match UserPerson.container.tsx EXACTLY.
+ * user is now flexible (Record<string, any>).
+ */
 export interface UserPersonScreenProps {
-  user: UserDraft;
-  loading: boolean;
-  error?: string | null;
-  onSave: (draft: UserDraft) => Promise<void>;
-  onChangePassword?: (payload: {
-    currentPassword: string;
-    newPassword: string;
-    confirmNewPassword: string;
-  }) => Promise<void>;
+  user: Record<string, any>;
+  onFieldChange: (key: keyof UserDraft | string, value: any) => void;
+  updatePartial: (partial: Partial<UserDraft>) => Promise<any | null>;
+  onSave: () => Promise<void>;
+  isSaving: boolean;
+  lastSaved: string | null;
 }
 
 export interface UserSectionProps<T> {

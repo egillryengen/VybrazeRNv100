@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 
-export type VisibilityOption = 'public' | 'private' | 'friends';
+export type VisibilityOption = 'public' | 'contacts' | 'hidden';
 
 export interface UserVisibilitySectionProps {
   value?: VisibilityOption;
@@ -13,21 +13,22 @@ export interface UserVisibilitySectionProps {
 
 const OPTIONS: {key: VisibilityOption; label: string}[] = [
   {key: 'public', label: 'Public'},
-  {key: 'private', label: 'Private'},
-  {key: 'friends', label: 'Friends'},
+  {key: 'contacts', label: 'Contacts only'},
+  {key: 'hidden', label: 'Hidden'},
 ];
 
 export const UserVisibilitySection: React.FC<UserVisibilitySectionProps> = ({
   value,
   onChange,
-  label = 'Profile visibility',
+  label = 'Visibility',
   testID,
 }) => {
-  const selected = value ?? 'private';
+  const selected = value ?? 'public';
 
   return (
     <View style={styles.container} testID={testID ?? 'user-visibility-section'}>
       <Text style={styles.label}>{label}</Text>
+
       <View style={styles.optionsRow}>
         {OPTIONS.map(opt => {
           const isSelected = selected === opt.key;
@@ -89,3 +90,5 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 });
+
+export default UserVisibilitySection;
