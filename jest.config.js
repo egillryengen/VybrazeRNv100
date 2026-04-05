@@ -5,14 +5,27 @@
 module.exports = {
   preset: 'react-native',
 
-  // Run this file before the test framework is installed in the environment.
-  // Use it to mock native modules (Animated, LayoutAnimation, etc.).
+  /**
+   * setupFiles:
+   * - Runs BEFORE the test framework is installed.
+   * - Used for mocking native modules (Animated, LayoutAnimation, etc.).
+   * - Your jest.setup.js belongs here.
+   */
   setupFiles: ['<rootDir>/jest.setup.js'],
 
-  // Add setupFilesAfterEnv to enable Jest globals like afterAll
+  /**
+   * setupFilesAfterEnv:
+   * - Runs AFTER the test framework is installed.
+   * - Enables globals like afterAll, beforeEach, expect extensions, etc.
+   * - You may keep jest.setup-after-env.js if you still need it.
+   * - If not needed, you can remove it later.
+   */
   setupFilesAfterEnv: ['<rootDir>/jest.setup-after-env.js'],
 
-  // Transform JS/TS files using babel-jest (assumes Babel is configured to handle TS).
+  /**
+   * Transform JS/TS files using babel-jest.
+   * Assumes Babel is configured to handle TypeScript.
+   */
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
@@ -28,7 +41,10 @@ module.exports = {
   // Ignore these paths when running tests
   testPathIgnorePatterns: ['/node_modules/', '/android/', '/ios/'],
 
-  // Transform ignore pattern: allow transforming some node_modules that ship ESM
+  /**
+   * Transform ignore pattern:
+   * Allow transforming some node_modules that ship ESM.
+   */
   transformIgnorePatterns: [
     'node_modules/(?!(react-native|@react-native|@react-navigation|@react-native-community)/)',
   ],
