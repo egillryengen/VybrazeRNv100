@@ -16,6 +16,11 @@ export const UserPersonContainer: React.FC = () => {
   const [user, setUser] = useState<AnyUser | null>(null);
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [lastSaved, setLastSaved] = useState<string | null>(null);
+
+  // NEW
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
   const isMountedRef = useRef<boolean>(false);
 
   const {debouncedSave, flush, cancel} = useDebouncedSave();
@@ -65,7 +70,15 @@ export const UserPersonContainer: React.FC = () => {
 
         setUser(u);
       } catch {
-        // swallow all init errors
+        // NEW
+        if (isMountedRef.current) {
+          setError('Failed to load user');
+        }
+      } finally {
+        // NEW
+        if (isMountedRef.current) {
+          setLoading(false);
+        }
       }
     };
 
@@ -169,6 +182,25 @@ export const UserPersonContainer: React.FC = () => {
       }
     }
   };
+
+  /**
+   * NEW: Loading + error guards
+   */
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading user...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>{error}</Text>
+      </View>
+    );
+  }
 
   /**
    * Improved fallback UI:
