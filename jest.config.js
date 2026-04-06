@@ -33,9 +33,10 @@ module.exports = {
   // Recognize these file extensions in imports
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 
-  // Map absolute imports from "src/..." to the src folder
+  // Map absolute imports from "src/..." to the src folder and mock socket.io-client
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
+    '^socket.io-client$': '<rootDir>/__mocks__/socket.io-client.js',
   },
 
   // Ignore these paths when running tests

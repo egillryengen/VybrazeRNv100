@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, strukturering_1e]
+    branches: [main, strukturering_1e, strukturering_1h]
   pull_request:
     branches: [main]
 
@@ -11,13 +11,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+
       - name: Type check
         run: npx tsc --noEmit
+
+      - name: Debug list snapshot files
+        run: |
+          echo "Commit: $(git rev-parse --short HEAD)"
+          echo "Workspace root listing (top-level):"
+          ls -la || true
+          echo "Test dir listing for UserPerson:"
+          ls -la src/features/user/screens/UserPerson/__tests__ || true
+          echo "Snapshots listing for UserPerson:"
+          ls -la src/features/user/screens/UserPerson/__tests__/__snapshots__ || true
+
       - name: Run tests
-        run: npx jest --runInBand --ci
+        run: yarn jest --runInBand --detectOpenHandles --ci
