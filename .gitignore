@@ -195,3 +195,9 @@ coverage/
 # Allow committed Jest snapshots for UserPerson tests
 !src/features/user/screens/UserPerson/__tests__/__snapshots__/
 !src/features/user/screens/UserPerson/__tests__/__snapshots__/*.snap
+
+# Local jest outputs
+jest-container-output.txt
+jest-screen-output.txt
+trukturering_1h
+
