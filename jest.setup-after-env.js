@@ -2,19 +2,6 @@
 // jest.setup-after-env.js
 // This file runs after the test framework is installed and has access to Jest globals like afterAll
 
-// Debug helper: log active Node handles at the end of the test run.
-afterAll(() => {
-  try {
-    const handles = process._getActiveHandles();
-    console.log(
-      'DEBUG: Active handles at end of tests:',
-      handles.map(h => (h && h.constructor && h.constructor.name) || String(h)),
-    );
-  } catch (e) {
-    console.error('DEBUG: Could not list active handles', e);
-  }
-});
-
 // --- Socket tracking and robust cleanup to stabilize CI snapshot runs ---
 
 const globalAny = global;
@@ -70,7 +57,7 @@ try {
 afterEach(() => {
   try {
     if (Array.isArray(globalAny.__TEST_SOCKETS__) && globalAny.__TEST_SOCKETS__.length) {
-      // Close each socket-like object if it has a close or destroy method
+      // Close each socket-like object if it has a close/destroy/terminate/end method
       globalAny.__TEST_SOCKETS__.forEach(s => {
         try {
           if (!s) return;
@@ -80,6 +67,8 @@ afterEach(() => {
             s.destroy();
           } else if (typeof s.terminate === 'function') {
             s.terminate();
+          } else if (typeof s.end === 'function') {
+            s.end();
           }
         } catch (e) {
           // ignore individual close errors
@@ -95,4 +84,22 @@ afterEach(() => {
   // General Jest cleanup
   try { jest.clearAllMocks(); } catch (e) {}
   try { jest.useRealTimers(); } catch (e) {}
+});
+
+// Debug helper: log active Node handles at the end of the test run.
+// Only log locally (not in CI) to avoid noisy CI logs.
+afterAll(() => {
+  if (process.env.CI) return;
+  try {
+    const handles = typeof process._getActiveHandles === 'function'
+      ? process._getActiveHandles().map(h => (h && h.constructor && h.constructor.name) || String(h))
+      : [];
+    if (handles && handles.length) {
+      // eslint-disable-next-line no-console
+      console.log('DEBUG: Active handles at end of tests:', handles);
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('DEBUG: Could not list active handles', e);
+  }
 });
