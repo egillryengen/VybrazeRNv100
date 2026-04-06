@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`UserPersonContainer snapshot 1`] = `
+<View>
+  <Text
+    testID="user-name"
+  >
+    Ola
+  </Text>
+  <Text
+    testID="is-saving"
+  >
+    false
+  </Text>
+  <Text
+    testID="last-saved"
+  />
+</View>
+`;
