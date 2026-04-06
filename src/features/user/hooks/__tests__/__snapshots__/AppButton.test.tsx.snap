@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`AppButton renders primary 1`] = `
+<View
+  accessibilityLabel="Save"
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 12,
+        "elevation": 2,
+        "justifyContent": "center",
+        "minHeight": 44,
+        "paddingHorizontal": 16,
+        "paddingVertical": 12,
+      },
+      {},
+      undefined,
+      {
+        "backgroundColor": "#8E2DE2",
+        "opacity": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontSize": 16,
+          "fontWeight": "600",
+          "lineHeight": 20,
+        },
+        {
+          "textAlign": "center",
+        },
+        {
+          "color": "#FFFFFF",
+        },
+        undefined,
+      ]
+    }
+  >
+    Save
+  </Text>
+</View>
+`;
+
+exports[`AppButton renders white 1`] = `
+<View
+  accessibilityLabel="Cancel"
+  accessibilityState={
+    {
+      "disabled": false,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 12,
+        "elevation": 2,
+        "justifyContent": "center",
+        "minHeight": 44,
+        "paddingHorizontal": 16,
+        "paddingVertical": 12,
+      },
+      {
+        "borderColor": "#11111133",
+        "borderWidth": 1,
+      },
+      undefined,
+      {
+        "backgroundColor": "#FFFFFF",
+        "opacity": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontSize": 16,
+          "fontWeight": "600",
+          "lineHeight": 20,
+        },
+        {
+          "textAlign": "center",
+        },
+        {
+          "color": "#111111",
+        },
+        undefined,
+      ]
+    }
+  >
+    Cancel
+  </Text>
+</View>
+`;

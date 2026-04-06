@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`AppFooter renders 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#F2F2F2",
+      "borderTopColor": "#E6E6E6",
+      "borderTopWidth": 1,
+      "flexDirection": "row",
+      "paddingVertical": 8,
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "selected": true,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#666",
+            "fontSize": 12,
+          },
+          {
+            "color": "#8E2DE2",
+            "fontWeight": "700",
+          },
+        ]
+      }
+    >
+      Home
+    </Text>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "selected": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#666",
+            "fontSize": 12,
+          },
+          null,
+        ]
+      }
+    >
+      Search
+    </Text>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "selected": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#666",
+            "fontSize": 12,
+          },
+          null,
+        ]
+      }
+    >
+      Create
+    </Text>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "selected": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#666",
+            "fontSize": 12,
+          },
+          null,
+        ]
+      }
+    >
+      Alerts
+    </Text>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "selected": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#666",
+            "fontSize": 12,
+          },
+          null,
+        ]
+      }
+    >
+      Profile
+    </Text>
+  </View>
+</View>
+`;
