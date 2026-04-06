@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -24,6 +26,28 @@ jobs:
 
       - name: Enable Corepack
         run: corepack enable
+
+      - name: Debug repo and environment
+        run: |
+          echo "Branch: $(git rev-parse --abbrev-ref HEAD)"
+          echo "Commit: $(git rev-parse HEAD)"
+          echo "Status:"
+          git status --porcelain
+          echo "List snapshots (hooks tests):"
+          ls -la src/features/user/hooks/__tests__ || true
+          echo "List snapshots (UserPerson tests):"
+          ls -la src/features/user/screens/UserPerson/__tests__ || true
+          echo "Node / yarn versions:"
+          node -v || true
+          yarn -v || true
+          echo "OS info:"
+          uname -a || true
+          echo "Show AppButton snapshot head (first 200 lines):"
+          sed -n '1,200p' src/features/user/hooks/__tests__/__snapshots__/AppButton.test.tsx.snap || true
+          echo "Show AppFooter snapshot head (first 200 lines):"
+          sed -n '1,200p' src/features/user/hooks/__tests__/__snapshots__/AppFooter.test.tsx.snap || true
+          echo "Show UserPerson snapshots (first file names):"
+          ls -la src/features/user/screens/UserPerson/__tests__/__snapshots__ || true
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
