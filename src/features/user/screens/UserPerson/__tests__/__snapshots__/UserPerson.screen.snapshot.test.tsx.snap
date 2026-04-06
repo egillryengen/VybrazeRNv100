@@ -1,0 +1,1107 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`UserPersonScreen snapshot renders correctly with full props 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "padding": 16,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-photo-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 8,
+          }
+        }
+      >
+        Photo
+      </Text>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#f6f6f6",
+              "borderColor": "#ddd",
+              "borderRadius": 8,
+              "borderWidth": 1,
+              "height": 88,
+              "justifyContent": "center",
+              "marginRight": 12,
+              "overflow": "hidden",
+              "width": 88,
+            }
+          }
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              {
+                "uri": "https://example.com/photo.jpg",
+              }
+            }
+            style={
+              {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "flex": 1,
+            }
+          }
+        >
+          <TextInput
+            autoCapitalize="none"
+            autoCorrect={false}
+            onChangeText={[Function]}
+            placeholder="Paste image URL or use pick"
+            style={
+              {
+                "backgroundColor": "#fff",
+                "borderColor": "#ddd",
+                "borderRadius": 6,
+                "borderWidth": 1,
+                "height": 44,
+                "marginBottom": 8,
+                "paddingHorizontal": 10,
+              }
+            }
+            testID="user-photo-url-input"
+            value="https://example.com/photo.jpg"
+          />
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#007AFF",
+                "borderRadius": 6,
+                "height": 40,
+                "justifyContent": "center",
+                "opacity": 1,
+                "paddingHorizontal": 12,
+              }
+            }
+            testID="user-photo-pick-button"
+          >
+            <Text
+              style={
+                {
+                  "color": "#fff",
+                  "fontSize": 14,
+                }
+              }
+            >
+              Pick Photo
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-name-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+          }
+        }
+      >
+        First name
+      </Text>
+      <TextInput
+        autoCapitalize="words"
+        onChangeText={[Function]}
+        placeholder="First name"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="Ola"
+      />
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+            "marginTop": 12,
+          }
+        }
+      >
+        Last name
+      </Text>
+      <TextInput
+        autoCapitalize="words"
+        onChangeText={[Function]}
+        placeholder="Last name"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="Nordmann"
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+          }
+        }
+      >
+        Birth date
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="default"
+        onChangeText={[Function]}
+        placeholder="YYYY-MM-DD"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        testID="user-birthdate-input"
+        value="1990-01-01"
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-gender-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 8,
+          }
+        }
+      >
+        Gender
+      </Text>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "selected": true,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#007AFF",
+              "borderColor": "#007AFF",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="gender-option-male"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                {
+                  "color": "#fff",
+                },
+              ]
+            }
+          >
+            Male
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="gender-option-female"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Female
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="gender-option-other"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Other
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="gender-option-unspecified"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Unspecified
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-city-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+          }
+        }
+      >
+        City
+      </Text>
+      <TextInput
+        autoCapitalize="words"
+        autoCorrect={false}
+        onChangeText={[Function]}
+        placeholder="Enter city"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="Oslo"
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-language-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 8,
+          }
+        }
+      >
+        Language
+      </Text>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "selected": true,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#007AFF",
+              "borderColor": "#007AFF",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="language-option-no"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                {
+                  "color": "#fff",
+                },
+              ]
+            }
+          >
+            Norsk
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="language-option-en"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            English
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="language-option-sv"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Svenska
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="language-option-da"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Dansk
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-contact-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+          }
+        }
+      >
+        Phone
+      </Text>
+      <TextInput
+        keyboardType="phone-pad"
+        onChangeText={[Function]}
+        placeholder="Phone number"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="12345678"
+      />
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+            "marginTop": 12,
+          }
+        }
+      >
+        Email
+      </Text>
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        keyboardType="email-address"
+        onChangeText={[Function]}
+        placeholder="Email address"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="ola@example.com"
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-visibility-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 8,
+          }
+        }
+      >
+        Visibility
+      </Text>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "selected": true,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#007AFF",
+              "borderColor": "#007AFF",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="visibility-option-public"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                {
+                  "color": "#fff",
+                },
+              ]
+            }
+          >
+            Public
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="visibility-option-contacts"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Contacts only
+          </Text>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "selected": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#fff",
+              "borderColor": "#ddd",
+              "borderRadius": 6,
+              "borderWidth": 1,
+              "marginBottom": 8,
+              "marginRight": 8,
+              "opacity": 1,
+              "paddingHorizontal": 12,
+              "paddingVertical": 8,
+            }
+          }
+          testID="visibility-option-hidden"
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#222",
+                  "fontSize": 13,
+                },
+                false,
+              ]
+            }
+          >
+            Hidden
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-preferences-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 8,
+          }
+        }
+      >
+        Preferences
+      </Text>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "borderBottomColor": "#f0f0f0",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#333",
+              "fontSize": 14,
+            }
+          }
+        >
+          Receive newsletter
+        </Text>
+        <RCTSwitch
+          accessibilityRole="switch"
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "height": 31,
+              "width": 51,
+            }
+          }
+          testID="pref-receive-newsletter-switch"
+          value={true}
+        />
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "borderBottomColor": "#f0f0f0",
+            "borderBottomWidth": 1,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingVertical": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "#333",
+              "fontSize": 14,
+            }
+          }
+        >
+          Dark mode
+        </Text>
+        <RCTSwitch
+          accessibilityRole="switch"
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "height": 31,
+              "width": 51,
+            }
+          }
+          testID="pref-darkmode-switch"
+          value={false}
+        />
+      </View>
+    </View>
+    <View
+      style={
+        {
+          "marginVertical": 8,
+          "paddingHorizontal": 12,
+        }
+      }
+      testID="user-business-section"
+    >
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+          }
+        }
+      >
+        Company
+      </Text>
+      <TextInput
+        autoCapitalize="words"
+        autoCorrect={false}
+        onChangeText={[Function]}
+        placeholder="Company name"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="Vybraze AS"
+      />
+      <Text
+        style={
+          {
+            "color": "#222",
+            "fontSize": 14,
+            "marginBottom": 6,
+            "marginTop": 12,
+          }
+        }
+      >
+        Title
+      </Text>
+      <TextInput
+        autoCapitalize="words"
+        autoCorrect={false}
+        onChangeText={[Function]}
+        placeholder="Job title"
+        style={
+          {
+            "backgroundColor": "#fff",
+            "borderColor": "#ddd",
+            "borderRadius": 6,
+            "borderWidth": 1,
+            "height": 44,
+            "paddingHorizontal": 10,
+          }
+        }
+        value="Developer"
+      />
+    </View>
+    <View
+      style={
+        {
+          "marginBottom": 60,
+          "marginTop": 40,
+        }
+      }
+    />
+  </View>
+</RCTScrollView>
+`;
